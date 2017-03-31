@@ -1,1 +1,17 @@
-.idea/*
+# IDEA 
+*.idea
+*.project
+*.iml
+
+# Eclipse
+*.class
+*.settings/
+*/.settings/
+.metadata
+*.classpath
+
+# Maven
+**/target/
+*/bin/
+
+*.log
