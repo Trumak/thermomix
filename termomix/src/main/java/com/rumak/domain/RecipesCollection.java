@@ -21,6 +21,7 @@ public class RecipesCollection extends BaseEntity {
 
     @Column(name = "NAME")
     private String name;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "collection", fetch = FetchType.LAZY)
     private List<Recipe> recipes;
 

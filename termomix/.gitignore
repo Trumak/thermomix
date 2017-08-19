@@ -1,4 +1,5 @@
-# IDEA 
+# IDEA
+.idea/
 *.idea
 *.project
 *.iml
