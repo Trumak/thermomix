@@ -15,13 +15,15 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
-@Table(name = "Recipes")
+@Table(name = "RECIPES")
 public class Recipe extends BaseEntity {
 
     @Column(name = "NAME")
     private String name;
+
     @ManyToOne(cascade = CascadeType.ALL)
     private RecipesCollection collection;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe", fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Ingredient> ingredients;
 

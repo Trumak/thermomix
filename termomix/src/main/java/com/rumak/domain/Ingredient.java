@@ -19,11 +19,14 @@ public class Ingredient extends BaseEntity {
 
     @Column(name = "NAME")
     private String name;
+
     @Column(name = "AMOUNT")
     private int amount;
+
     @Column(name = "UNIT")
     @Enumerated
     private Unit unit;
+
     @ManyToOne(cascade = CascadeType.ALL, optional = false)
     private Recipe recipe;
 }

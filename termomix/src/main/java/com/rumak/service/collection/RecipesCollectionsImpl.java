@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import com.rumak.repository.CollectionDao;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by tomasz on 25.03.17.
@@ -29,7 +33,7 @@ class RecipesCollectionsImpl implements RecipesCollections {
         if (!collection.isPresent()){
             throw new ElementNotFound();
         }
-        return new RecipeCollectionDto();
+        return RecipeCollectionDto.create(collection.get());
     }
 
     @Override
@@ -37,5 +41,13 @@ class RecipesCollectionsImpl implements RecipesCollections {
     public RecipeCollectionDto saveCollection(RecipeCollectionDto collectionDto) {
         collectionDao.save(RecipesCollection.from(collectionDto));
         return collectionDto;
+    }
+
+    @Override
+    public List<RecipeCollectionDto> getAllCollections() {
+        final List<RecipesCollection> collections = collectionDao.findAll();
+        return collections.stream()
+                .map(RecipeCollectionDto::create)
+                .collect(Collectors.toList());
     }
 }

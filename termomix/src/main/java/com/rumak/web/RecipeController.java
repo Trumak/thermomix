@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import com.rumak.service.collection.RecipesCollections;
 import com.rumak.service.recipe.Recipes;
 
+import java.util.List;
+
 /**
  * Created by tomasz on 25.03.17.
  */
@@ -32,6 +34,12 @@ public class RecipeController {
     @ResponseStatus(HttpStatus.OK)
     public RecipeDto getRecipe(@PathVariable("recipe_name") String recipeName) throws ElementNotFound {
         return recipes.getRecipeBy(recipeName);
+    }
+
+    @RequestMapping(path = "/collections", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<RecipeCollectionDto> getCollections() {
+        return collections.getAllCollections();
     }
 
     @RequestMapping(path = "/collection",method = RequestMethod.POST)

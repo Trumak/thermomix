@@ -18,19 +18,25 @@ import java.time.ZonedDateTime;
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 
+    private static final String ID_SEQ = "id_seq";
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = ID_SEQ, sequenceName = ID_SEQ, allocationSize = 200)
+    @GeneratedValue(generator = ID_SEQ, strategy = GenerationType.SEQUENCE)
     @Column(name = "ID", nullable = false)
     private Long id;
+
     @Column(name = "CREATION_TIME", nullable = false)
     private LocalDateTime creationTime;
+
     @Column(name = "UPDATE_TIME", nullable = false)
     private LocalDateTime lastUpdateTime;
+
     @Column(name = "CREATED_BY")
     @Size(max = 30)
     private String createdBy;
+
     @Column(name = "UPDATED_BY")
     @Size(max = 30)
     private String updatedBy;
